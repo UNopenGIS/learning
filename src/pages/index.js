@@ -7,6 +7,8 @@ import styles from './index.module.css';
 import React, { useEffect, useState } from 'react';
 // import tutorials from '../tutorials.json';
 
+import Translate, {translate} from '@docusaurus/Translate';
+
 const tutorials = [
   {
     id: 'maplibre-gl-js',
@@ -31,9 +33,9 @@ function TutorialCards() {
           onClick={() => window.location.href = tutorial.link}
         >
           <div className={styles.cardContent}>
-            <h2>{tutorial.title}</h2>
-            <p>{tutorial.description}</p>
-            <div className={styles.readMore}>Read More</div>
+            <h2><Translate>{tutorial.title}</Translate></h2>
+            <p><Translate>{tutorial.description}</Translate></p>
+            <div className={styles.readMore}><Translate>Read More</Translate></div>
           </div>
         </div>
       ))}
@@ -46,14 +48,14 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <Heading as="h1" className="hero__title">
-          {siteConfig.title}
+          <Translate>UN Smart Maps Learning Hub</Translate>
         </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <p className="hero__subtitle"><Translate>Keep learning open for a better world</Translate></p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/intro">
-            Get started ✏️
+            <Translate>Get started ✏️</Translate>
           </Link>
         </div>
       </div>
@@ -70,8 +72,8 @@ export default function Home() {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title={`${siteConfig.title}`}
+      description="Learn to smart map here! <head />">
       <HomepageHeader />
       <main>
         <TutorialCards />
