@@ -9,7 +9,7 @@ const config = {
   title: "UN Smart Maps Learning Hub",
   tagline: "Keep learning open for a better world",
   url: "https://unopengis.github.io",
-  baseUrl: "/learning-hub/",
+  baseUrl: "/learning/",
   onBrokenLinks: "ignore",
   onBrokenMarkdownLinks: "ignore",
   favicon: "img/favicon.png",
