@@ -4,11 +4,15 @@
     "description": "The label for version current"
   },
   "sidebar.tutorialSidebar.category.Tutorials": {
-    "message": "Tutorials",
+    "message": "チュートリアル",
     "description": "The label for category Tutorials in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Maplibre GL": {
     "message": "Maplibre GL",
     "description": "The label for category Maplibre GL in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.leaflet": {
+    "message": "leaflet",
+    "description": "The label for category leaflet in sidebar tutorialSidebar"
   }
 }

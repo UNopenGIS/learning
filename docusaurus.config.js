@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require("prism-react-renderer/themes/github");
-const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+const darkCodeTheme = require("prism-react-renderer/themes/vsdark");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -20,7 +20,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "unopengis", // Usually your GitHub org/user name.
-  projectName: "learninghub", // Usually your repo name.
+  projectName: "learning", // Usually your repo name.
 
   presets: [
     [
@@ -66,7 +66,7 @@ const config = {
             label: "About"
           },
           {
-            to: "/learn", // path to the page
+            to: "/category/tutorials", // path to the page
             label: "Learn", // label of the tab
             position: "left" // position of the tab
           },
@@ -77,7 +77,7 @@ const config = {
             position: "right",
           },
           {
-            href: "https://github.com/unopengis/smartmaps/",
+            href: "https://github.com/unopengis/learning/",
             label: "GitHub",
             position: "right"
           }
@@ -108,10 +108,6 @@ const config = {
             title: "More",
             items: [
               {
-                label: "Blog",
-                to: "/blog"
-              },
-              {
                 label: "GitHub",
                 href: "https://github.com/unopengis/"
               }
@@ -136,6 +132,7 @@ const config = {
     mermaid: true,
   },
   // themes: ['@docusaurus/theme-mermaid']
+  themes: ['@docusaurus/theme-live-codeblock'],
 };
 
 module.exports = config;

@@ -285,5 +285,25 @@
   "theme.unlistedContent.message": {
     "message": "This page is unlisted. Search engines will not index it, and only users having a direct link can access it.",
     "description": "The unlisted content banner message"
+  },
+  "Read More": {
+    "message": "続きを読む"
+  },
+  "theme.Playground.result": {
+    "message": "結果",
+    "description": "The result label of the live codeblocks"
+  },
+  "theme.Playground.liveEditor": {
+    "message": "ライブエディター",
+    "description": "The live editor label of the live codeblocks"
+  },
+  "UN Smart Maps Learning Hub": {
+    "message": "国連スマート地図学習ハブ"
+  },
+  "Keep learning open for a better world": {
+    "message": "より良い世界のために学習を続ける"
+  },
+  "Get started ✏️": {
+    "message": "始めよう✏️"
   }
 }
