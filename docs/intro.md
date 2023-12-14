@@ -17,23 +17,23 @@ If you're new to mapping, start here. We've curated a collection of resources de
 
 Ready to take your mapping skills to the next level? Dive into these intermediate topics.
 
-- [Advanced Mapping Techniques]()🚧
-- [Working with Geospatial Data]()🚧
-- [Creating Interactive Maps]()🚧
+- Advanced Mapping Techniques🚧
+- Working with Geospatial Data🚧
+- Creating Interactive Maps🚧
 
 ## Advanced Topics
 
 For experienced mappers looking to push their skills even further, explore our advanced topics.
 
-- [Machine Learning for Mapping]()🚧
-- [Big Data and Mapping]()🚧
+- Machine Learning for Mapping🚧
+- Big Data and Mapping🚧
 
 ## Quizzes
 
 Test your knowledge and reinforce what you've learned with our quizzes.
 
-- [Beginner Quiz]()🚧
-- [Intermediate Quiz]()🚧
-- [Advanced Quiz]()🚧
+- Beginner Quiz🚧
+- Intermediate Quiz🚧
+- Advanced Quiz🚧
 
 We're constantly updating our Learning Hub with new resources, so be sure to check back often. Happy mapping!
