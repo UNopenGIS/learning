@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>Add live realtime data</title>
-    <meta property="og:description" content="Use realtime GeoJSON data streams to move a symbol on your map." />
+    <meta property="og:description" content="Show some timezones on a map" />
     <meta charset='utf-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel='stylesheet' href='https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css' />
@@ -10,6 +10,19 @@
     <style>
         body { margin: 0; padding: 0; }
         html, body, #map { height: 100%; }
+        .maplibregl-popup {
+            background-color: transparent;
+            box-shadow: none;
+        }
+        .maplibregl-popup-content {
+            background-color: transparent;
+            color: #000;
+            box-shadow: none;
+            padding: 0;
+        }
+        .maplibregl-popup-tip {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -18,28 +31,31 @@
 <script>
     const map = new maplibregl.Map({
         container: 'map',
-        style:
-            'https://api.maptiler.com/maps/streets/style.json?key=get_your_own_OpIi9ZULNHzrESv6T2vL',
-        zoom: 0
+        style: 'https://basemaps.cartocdn.com/gl/positron-nolabels-gl-style/style.json',
+        center: [170, 32],
+        zoom: 1
     });
 
-        var laMarker = new mapboxgl.Marker()
+    map.on('load', function () {
+        const laPopup = new maplibregl.Popup({ offset: 25, closeOnClick: false, closeButton: false })
             .setLngLat([-118.2437, 34.0522])
+            .setText('🇺🇸 Loading...')
             .addTo(map);
 
+        const tokyoPopup = new maplibregl.Popup({ offset: 25, closeOnClick: false, closeButton: false })
+            .setLngLat([139.6917, 35.6895])
+            .setText('🇯🇵 Loading...')
+            .addTo(map);
+
+        // Update the labels every second.
         setInterval(() => {
             let laTime = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', timeStyle: 'medium' }).format(new Date());
-            laMarker.setPopup(new mapboxgl.Popup().setHTML('<p> 🇺🇸 ' + laTime + '</p>')).togglePopup();
-        }, 1000);
-
-        var tokyoMarker = new mapboxgl.Marker()
-            .setLngLat([139.6917, 35.6895])
-            .addTo(map);
-
-        setInterval(() => {
             let tokyoTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', timeStyle: 'medium' }).format(new Date());
-            tokyoMarker.setPopup(new mapboxgl.Popup().setHTML('<p>🇯🇵 ' + tokyoTime + '</p>')).togglePopup();
+
+            laPopup.setText('🇺🇸 ' + laTime);
+            tokyoPopup.setText('🇯🇵 ' + tokyoTime);
         }, 1000);
-    </script>
+    });
+</script>
 </body>
 </html>
