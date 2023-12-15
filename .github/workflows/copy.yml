@@ -1,0 +1,33 @@
+name: Copy and Push
+on:
+    push:
+        branches:
+            - dev
+
+jobs:
+    copy-and-push:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v2
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v2
+              with:
+                    node-version: 18
+                    cache: yarn
+                    cache-dependency-path: "./package.json"
+
+            - name: Install dependencies
+              run: yarn add fs-extra glob
+
+            - name: Copy files
+              run: yarn copy
+
+            - name: Commit and push
+              run: |
+                    git config --local user.email "action@github.com"
+                    git config --local user.name "GitHub Action"
+                    git add .
+                    git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
+                    git push
