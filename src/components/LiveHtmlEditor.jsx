@@ -11,6 +11,9 @@ export default function LiveHtmlEditor({ fileUrl }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    // Extract the filename from the fileUrl
+    const filename = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
+
     const fetchFile = useCallback(async (url) => {
         const response = await fetch(url);
 
@@ -23,12 +26,19 @@ export default function LiveHtmlEditor({ fileUrl }) {
             const directoryUrl = url.substring(0, url.lastIndexOf('/'));
 
             // Recursively try to fetch the file from the parent directory
-            fetchFile(`${directoryUrl}/maplibre-tz.html`);
+            fetchFile(`${directoryUrl}/${filename}`);
         } else {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    }, []);
+    }, [filename]);
 
+    useEffect(() => {
+        fetchFile(fileUrl).catch(error => {
+            setError(error.message);
+            setLoading(false);
+        });
+    }, [fileUrl, fetchFile]);
+    
     useEffect(() => {
         fetchFile(fileUrl).catch(error => {
             setError(error.message);
