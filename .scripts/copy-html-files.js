@@ -5,7 +5,7 @@ const path = require('path');
 // Define the source and destination directories
 const sourceDir = path.join(__dirname, '..', 'docs');
 const destDir1 = path.join(__dirname, '..', 'static');
-const destDir2 = path.join(__dirname, '..', 'static/examples');
+const destDir2 = path.join(__dirname, '..', 'static', 'examples');
 
 // Find all .html files in the source directory
 glob(`${sourceDir}/**/*.html`, (err, files) => {
