@@ -26,10 +26,10 @@ jobs:
 
             - name: Commit and push
               run: |
-                    git config --local user.email "action@github.com"
-                    git config --local user.name "GitHub Action"
-                    git add .
-                    git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
-                    git push https://${GH_TOKEN}@github.com/UNopenGIS/learning.git HEAD:dev
+                git config --local user.email "action@github.com"
+                git config --local user.name "GitHub Action"
+                git add .
+                git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
+                git push origin HEAD:dev
               env:
-                    GH_TOKEN: ${{ secrets.GH_ACTIONS_TOKEN }}
+                GIT_AUTH_TOKEN: ${{ secrets.PAT }}
