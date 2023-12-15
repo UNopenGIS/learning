@@ -70,8 +70,11 @@ const config = {
             label: "Learn", // label of the tab
             position: "left" // position of the tab
           },
-          // { to: "/get-involved", label: "Get Involved", position: "left" },
-          // { to: "/blog", label: "Blog", position: "left" },
+          {
+            to: "/examples", // path to the page
+            label: "Examples", // label of the tab
+            position: "left" // position of the tab
+          },
           {
             type: "localeDropdown",
             position: "right",
@@ -92,6 +95,10 @@ const config = {
               {
                 label: "Tutorial",
                 to: "/intro"
+              },
+              {
+                label: "Examples",
+                to: "/examples"
               }
             ]
           },
@@ -133,6 +140,7 @@ const config = {
   },
   // themes: ['@docusaurus/theme-mermaid']
   themes: ['@docusaurus/theme-live-codeblock'],
+  
 };
 
 module.exports = config;

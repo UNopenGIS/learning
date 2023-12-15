@@ -1,0 +1,45 @@
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div id="map" style="height:500px"></div>
+    <script>
+    (function() {
+        const map = L.map('map').setView([34, -170], 1);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        let laMarker = L.marker([34.0522, -118.2437], {
+            icon: L.divIcon({
+                className: 'time-label',
+                html: 'Loading...',
+            }),
+        }).addTo(map); // Los Angeles
+        setInterval(() => {
+            let laTime = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', timeStyle: 'medium' }).format(new Date());
+            laMarker.setIcon(L.divIcon({
+                className: 'time-label',
+                html: '<p> 🇺🇸 ' + laTime + '</p>',
+            }));
+        }, 1000);
+        
+        let tokyoMarker = L.marker([35.6895, 139.6917 - 360], {
+            icon: L.divIcon({
+                className: 'time-label',
+                html: 'Loading...',
+            }),
+        }).addTo(map); // Tokyo, Japan
+        setInterval(() => {
+            let tokyoTime = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', timeStyle: 'medium' }).format(new Date());
+            tokyoMarker.setIcon(L.divIcon({
+                className: 'time-label',
+                html: '<p>🇯🇵 ' + tokyoTime + '</p>',
+            }));
+        }, 1000);
+    })();
+    </script>
+</body>
+</html>
