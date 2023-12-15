@@ -30,4 +30,4 @@ jobs:
                 git config --local user.name "albertkun"
                 git add .
                 git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
-                git push https://x-access-token:${{ secrets.PAT }}@github.com/UNopenGIS/learning.git HEAD:dev
+                git push https://albertkun:${{ secrets.PAT }}@github.com/UNopenGIS/learning.git HEAD:dev
