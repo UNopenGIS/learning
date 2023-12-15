@@ -23,6 +23,15 @@ jobs:
         - name: Build website
           working-directory: ./
           run: yarn build
+        - name: Copy files
+          run: yarn copy
+        - name: Commit and push
+          run: |
+            git config --global user.name 'github-actions[bot]'
+            git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add .
+            git commit -m "[Auto] Copy files" || exit 0
+            git push origin main || exit 0
         - name: Deploy Documentation to GitHub Pages
           uses: peaceiris/actions-gh-pages@v3
           with:
@@ -31,6 +40,5 @@ jobs:
             publish_branch: gh-pages
             user_name: github-actions[bot]
             user_email: 41898282+github-actions[bot]@users.noreply.github.com
-      # - run: mkdocs gh-deploy --force --dirty
 env:
   GH_TOKEN: ${{secrets.GH_ACTIONS_TOKEN}}
