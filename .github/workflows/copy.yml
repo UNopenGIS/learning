@@ -10,7 +10,8 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v2
-
+              with:
+                ref: dev
             - name: Setup Node.js
               uses: actions/setup-node@v2
               with:
@@ -24,10 +25,12 @@ jobs:
             - name: Copy files
               run: yarn copy
 
+            - name: Setup git
+              run: |
+                git config --global user.email "github-actions[bot]@users.noreply.github.com"
+                git config --global user.name "github-actions[bot]"
             - name: Commit and push
               run: |
-                git config --local user.email "albertk@gmx.com"
-                git config --local user.name "albertkun"
                 git add .
-                git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
-                git push https://albertkun:${{ secrets.PAT }}@github.com/UNopenGIS/learning.git HEAD:dev
+                git commit -m "[Auto] Copy files to static"
+                git push origin dev
