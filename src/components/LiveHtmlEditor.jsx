@@ -22,11 +22,8 @@ export default function LiveHtmlEditor({ fileUrl }) {
             setCode(text);
             setLoading(false);
         } else if (response.status === 404) {
-            // Remove the last directory from the url
-            const directoryUrl = url.substring(0, url.lastIndexOf('/'));
-
-            // Recursively try to fetch the file from the parent directory
-            fetchFile(`${directoryUrl}/${filename}`);
+            // Try to fetch the file from the root of the examples directory
+            fetchFile(`/examples/${filename}`);
         } else {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -38,14 +35,6 @@ export default function LiveHtmlEditor({ fileUrl }) {
             setLoading(false);
         });
     }, [fileUrl, fetchFile]);
-    
-    useEffect(() => {
-        fetchFile(fileUrl).catch(error => {
-            setError(error.message);
-            setLoading(false);
-        });
-    }, [fileUrl, fetchFile]);
-
 
     if (loading) {
         return <div>Loading...</div>;
