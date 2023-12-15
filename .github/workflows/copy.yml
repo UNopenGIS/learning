@@ -26,8 +26,9 @@ jobs:
 
             - name: Commit and push
               run: |
-                git config --local user.email "albertk@gmx.com"
-                git config --local user.name "albertkun"
+                git config --local user.email "action@github.com"
+                git config --local user.name "GitHub Action"
+                git config --local http.https://github.com/.extraheader "AUTHORIZATION: bearer ${{ secrets.PAT }}"
                 git add .
                 git commit -m "[Auto] Update static files" || exit 0  # Don't fail if no changes
                 git push origin HEAD:dev
