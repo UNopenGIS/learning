@@ -1,5 +1,5 @@
 const fs = require('fs-extra');
-const glob = require('glob');
+const glob = require('glob').glob;
 const path = require('path');
 
 // Define the source and destination directories
