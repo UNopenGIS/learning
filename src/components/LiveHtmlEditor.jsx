@@ -14,8 +14,8 @@ export default function LiveHtmlEditor({ fileUrl }) {
     // Extract the filename from the fileUrl
     const filename = fileUrl.substring(fileUrl.lastIndexOf('/') + 1);
 
-    const fetchFile = useCallback(async (url) => {
-        const response = await fetch(url);
+    const fetchFile = useCallback(async (url, isRecursive = false) => {
+        const response = await fetch(isRecursive ? `/learning${url}` : url);
 
         if (response.ok) {
             const text = await response.text();
@@ -23,7 +23,7 @@ export default function LiveHtmlEditor({ fileUrl }) {
             setLoading(false);
         } else if (response.status === 404) {
             // Try to fetch the file from the root of the examples directory
-            fetchFile(`/examples/${filename}`);
+            fetchFile(`/examples/${filename}`, true);
         } else {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
