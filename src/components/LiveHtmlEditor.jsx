@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-markup';
@@ -11,23 +11,31 @@ export default function LiveHtmlEditor({ fileUrl }) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    const fetchFile = useCallback(async (url) => {
+        const response = await fetch(url);
+
+        if (response.ok) {
+            const text = await response.text();
+            setCode(text);
+            setLoading(false);
+        } else if (response.status === 404) {
+            // Remove the last directory from the url
+            const directoryUrl = url.substring(0, url.lastIndexOf('/'));
+
+            // Recursively try to fetch the file from the parent directory
+            fetchFile(`${directoryUrl}/maplibre-tz.html`);
+        } else {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    }, []);
+
     useEffect(() => {
-        fetch(fileUrl)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(text => {
-                setCode(text);
-                setLoading(false);
-            })
-            .catch(error => {
-                setError(error.message);
-                setLoading(false);
-            });
-    }, [fileUrl]);
+        fetchFile(fileUrl).catch(error => {
+            setError(error.message);
+            setLoading(false);
+        });
+    }, [fileUrl, fetchFile]);
+
 
     if (loading) {
         return <div>Loading...</div>;
