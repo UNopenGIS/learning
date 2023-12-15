@@ -9,19 +9,30 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 export default function LiveHtmlEditor({ fileUrl }) {
     const [code, setCode] = useState('');
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         fetch(fileUrl)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                console.log('response');
-                console.log(response);
                 return response.text();
             })
-            .then(setCode)
-            .catch(error => setError(error.message));
+            .then(text => {
+                setCode(text);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError(error.message);
+                setLoading(false);
+            });
     }, [fileUrl]);
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
     return (
         <div style={{ border: '1px solid #ddd', borderRadius: '4px', height: '100%', display: 'flex', flexDirection: 'column' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px', backgroundColor: '#f0f0f0', borderBottom: '1px solid #ddd' }}>
